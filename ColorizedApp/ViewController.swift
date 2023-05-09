@@ -9,11 +9,23 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    //MARK: - IBOutlets
+    @IBOutlet var coloredView: UIView!
+    @IBOutlet var redValueLabel: UILabel!
+    @IBOutlet var greenValueLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        coloredView.layer.cornerRadius = 20
     }
 
-
+    //MARK: - IBActions
+    @IBAction func redSliderAction(_ sender: UISlider) {
+        redValueLabel.text = String(format: "%.2f", sender.value)
+    }
+    
+    @IBAction func greenSliderAction(_ sender: UISlider) {
+        greenValueLabel.text = String(format: "%.2f", sender.value)
+    }
 }
 
