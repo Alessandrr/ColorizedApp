@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet var coloredView: UIView!
     @IBOutlet var redValueLabel: UILabel!
     @IBOutlet var greenValueLabel: UILabel!
+    @IBOutlet var blueValueLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,5 +28,10 @@ class ViewController: UIViewController {
     @IBAction func greenSliderAction(_ sender: UISlider) {
         greenValueLabel.text = String(format: "%.2f", sender.value)
     }
+    
+    @IBAction func blueSliderAction(_ sender: UISlider) {
+        blueValueLabel.text = String(format: "%.2f", sender.value)
+    }
+    
 }
 
