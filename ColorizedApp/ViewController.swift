@@ -11,47 +11,44 @@ class ViewController: UIViewController {
 
     //MARK: - IBOutlets
     @IBOutlet var coloredView: UIView!
+    
     @IBOutlet var redValueLabel: UILabel!
     @IBOutlet var greenValueLabel: UILabel!
     @IBOutlet var blueValueLabel: UILabel!
     
-    //MARK: - Private properties
-    private var redValue: CGFloat = 0.5
-    private var greenValue: CGFloat = 0.5
-    private var blueValue: CGFloat = 0.5
+    @IBOutlet var redSlider: UISlider!
+    @IBOutlet var greenSlider: UISlider!
+    @IBOutlet var blueSlider: UISlider!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         coloredView.layer.cornerRadius = 20
-        setupViewColor(for: coloredView, red: redValue, green: greenValue, blue: blueValue)
+        setupViewColor(for: coloredView)
     }
 
     //MARK: - IBActions
-    @IBAction func redSliderAction(_ sender: UISlider) {
-        redValueLabel.text = String(format: "%.2f", sender.value)
-        redValue = CGFloat(sender.value)
-        setupViewColor(for: coloredView, red: redValue, green: greenValue, blue: blueValue)
+    @IBAction func redSliderAction() {
+        redValueLabel.text = String(format: "%.2f", redSlider.value)
+        setupViewColor(for: coloredView)
     }
     
-    @IBAction func greenSliderAction(_ sender: UISlider) {
-        greenValueLabel.text = String(format: "%.2f", sender.value)
-        greenValue = CGFloat(sender.value)
-        setupViewColor(for: coloredView, red: redValue, green: greenValue, blue: blueValue)
+    @IBAction func greenSliderAction() {
+        greenValueLabel.text = String(format: "%.2f", greenSlider.value)
+        setupViewColor(for: coloredView)
     }
     
-    @IBAction func blueSliderAction(_ sender: UISlider) {
-        blueValueLabel.text = String(format: "%.2f", sender.value)
-        blueValue = CGFloat(sender.value)
-        setupViewColor(for: coloredView, red: redValue, green: greenValue, blue: blueValue)
+    @IBAction func blueSliderAction() {
+        blueValueLabel.text = String(format: "%.2f", blueSlider.value)
+        setupViewColor(for: coloredView)
     }
     
     //MARK: - Private functions
     
-    private func setupViewColor(for view: UIView, red: CGFloat, green: CGFloat, blue: CGFloat) {
+    private func setupViewColor(for view: UIView) {
         view.backgroundColor = UIColor(
-            red: red,
-            green: green,
-            blue: blue,
+            red: CGFloat(redSlider.value),
+            green: CGFloat(greenSlider.value),
+            blue: CGFloat(blueSlider.value),
             alpha: 1
         )
     }

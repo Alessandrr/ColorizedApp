@@ -47,7 +47,7 @@
                                                 <rect key="frame" x="117.33333333333334" y="0.0" width="282.66666666666663" height="31"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemRedColor"/>
                                                 <connections>
-                                                    <action selector="redSliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="98Q-Zo-8Hk"/>
+                                                    <action selector="redSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="KVX-wv-5Fg"/>
                                                 </connections>
                                             </slider>
                                         </subviews>
@@ -75,7 +75,7 @@
                                                 <rect key="frame" x="117.33333333333334" y="0.0" width="282.66666666666663" height="31"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemGreenColor"/>
                                                 <connections>
-                                                    <action selector="greenSliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="MSF-Jr-wpx"/>
+                                                    <action selector="greenSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="6mx-K7-DDn"/>
                                                 </connections>
                                             </slider>
                                         </subviews>
@@ -102,7 +102,7 @@
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="okm-fM-7Db">
                                                 <rect key="frame" x="117.33333333333334" y="0.0" width="282.66666666666663" height="31"/>
                                                 <connections>
-                                                    <action selector="blueSliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="QsI-pj-HhT"/>
+                                                    <action selector="blueSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="tji-X9-WbG"/>
                                                 </connections>
                                             </slider>
                                         </subviews>
@@ -125,9 +125,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="blueSlider" destination="okm-fM-7Db" id="RcA-Ur-1Py"/>
                         <outlet property="blueValueLabel" destination="RvG-kg-yXs" id="OkM-hc-wJa"/>
                         <outlet property="coloredView" destination="01V-GT-5oL" id="zuQ-K2-LhE"/>
+                        <outlet property="greenSlider" destination="1qf-dN-6Ux" id="fXu-Vh-Hua"/>
                         <outlet property="greenValueLabel" destination="pKx-Sj-Be6" id="SoW-0L-zKr"/>
+                        <outlet property="redSlider" destination="rSD-Cw-8Bw" id="HOu-wh-jn3"/>
                         <outlet property="redValueLabel" destination="a96-BV-5Za" id="aBe-Cs-Rko"/>
                     </connections>
                 </viewController>
