@@ -47,7 +47,7 @@
                                                 <rect key="frame" x="117.33333333333334" y="0.0" width="282.66666666666663" height="31"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemRedColor"/>
                                                 <connections>
-                                                    <action selector="redSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="KVX-wv-5Fg"/>
+                                                    <action selector="sliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="lat-72-LrY"/>
                                                 </connections>
                                             </slider>
                                         </subviews>
@@ -75,7 +75,7 @@
                                                 <rect key="frame" x="117.33333333333334" y="0.0" width="282.66666666666663" height="31"/>
                                                 <color key="minimumTrackTintColor" systemColor="systemGreenColor"/>
                                                 <connections>
-                                                    <action selector="greenSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="6mx-K7-DDn"/>
+                                                    <action selector="sliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="Cr4-lE-D4G"/>
                                                 </connections>
                                             </slider>
                                         </subviews>
@@ -102,7 +102,7 @@
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="okm-fM-7Db">
                                                 <rect key="frame" x="117.33333333333334" y="0.0" width="282.66666666666663" height="31"/>
                                                 <connections>
-                                                    <action selector="blueSliderAction" destination="BYZ-38-t0r" eventType="valueChanged" id="tji-X9-WbG"/>
+                                                    <action selector="sliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="s9G-lM-tmn"/>
                                                 </connections>
                                             </slider>
                                         </subviews>

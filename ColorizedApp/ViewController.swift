@@ -27,23 +27,21 @@ class ViewController: UIViewController {
     }
 
     //MARK: - IBActions
-    @IBAction func redSliderAction() {
-        redValueLabel.text = String(format: "%.2f", redSlider.value)
+    @IBAction func sliderAction(_ sender: UISlider) {
         setupViewColor(for: coloredView)
+        
+        switch sender {
+        case redSlider:
+            redValueLabel.text = string(from: sender)
+        case greenSlider:
+            greenValueLabel.text = string(from: sender)
+        default:
+            blueValueLabel.text = string(from: sender)
+        }
     }
     
-    @IBAction func greenSliderAction() {
-        greenValueLabel.text = String(format: "%.2f", greenSlider.value)
-        setupViewColor(for: coloredView)
-    }
-    
-    @IBAction func blueSliderAction() {
-        blueValueLabel.text = String(format: "%.2f", blueSlider.value)
-        setupViewColor(for: coloredView)
-    }
     
     //MARK: - Private functions
-    
     private func setupViewColor(for view: UIView) {
         view.backgroundColor = UIColor(
             red: CGFloat(redSlider.value),
@@ -51,6 +49,10 @@ class ViewController: UIViewController {
             blue: CGFloat(blueSlider.value),
             alpha: 1
         )
+    }
+    
+    private func string(from slider: UISlider) -> String {
+        String(format: "%.2f", slider.value)
     }
     
 }
