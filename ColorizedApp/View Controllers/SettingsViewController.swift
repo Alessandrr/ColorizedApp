@@ -46,22 +46,20 @@ class SettingsViewController: UIViewController {
 
     //MARK: - IBActions
     @IBAction func sliderAction(_ sender: UISlider) {
-        currentColor = Color(
-            red: redSlider.value,
-            green: greenSlider.value,
-            blue: blueSlider.value
-        )
-        updateViewColor(for: coloredView)
-        updateFieldValues()
-        
         switch sender {
         case redSlider:
             redValueLabel.text = string(from: sender)
+            currentColor.red = redSlider.value
         case greenSlider:
             greenValueLabel.text = string(from: sender)
+            currentColor.green = greenSlider.value
         default:
             blueValueLabel.text = string(from: sender)
+            currentColor.blue = blueSlider.value
         }
+        
+        updateViewColor(for: coloredView)
+        updateFieldValues()
     }
     
     @IBAction func doneButtonPressed() {
@@ -93,17 +91,17 @@ class SettingsViewController: UIViewController {
         blueValueLabel.text = string(from: blueSlider)
     }
     
+    private func updateFieldValues() {
+        redValueTF.text = string(from: redSlider)
+        greenValueTF.text = string(from: greenSlider)
+        blueValueTF.text = string(from: blueSlider)
+    }
+    
     private func setupFields() {
         for field in [redValueTF, greenValueTF, blueValueTF] {
             field?.inputAccessoryView = colorInputToolbar
             field?.delegate = self
         }
-    }
-    
-    private func updateFieldValues() {
-        redValueTF.text = string(from: redSlider)
-        greenValueTF.text = string(from: greenSlider)
-        blueValueTF.text = string(from: blueSlider)
     }
     
     private func string(from slider: UISlider) -> String {
@@ -135,11 +133,11 @@ extension SettingsViewController: UITextFieldDelegate {
         
         switch textField {
         case redValueTF:
-            currentColor.red = Float(newColorValue)
+            currentColor.red = newColorValue
         case greenValueTF:
-            currentColor.green = Float(newColorValue)
+            currentColor.green = newColorValue
         default:
-            currentColor.blue = Float(newColorValue)
+            currentColor.blue = newColorValue
         }
         
         updateViewColor(for: coloredView)
