@@ -11,14 +11,12 @@ protocol SettingsViewControllerDelegate {
     func setViewColor(using color: Color)
 }
 
+
 class ColorViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let settingsVC = segue.destination as? SettingsViewController else { return }
+        guard let navigationVC = segue.destination as? UINavigationController else { return }
+        guard let settingsVC = navigationVC.topViewController as? SettingsViewController else { return }
         settingsVC.currentColor = getViewColor()
         settingsVC.delegate = self
     }
@@ -29,6 +27,7 @@ class ColorViewController: UIViewController {
 
 }
 
+//MARK: - Extensions
 extension ColorViewController: SettingsViewControllerDelegate {
     func setViewColor(using color: Color) {
         view.backgroundColor = UIColor(
@@ -38,8 +37,6 @@ extension ColorViewController: SettingsViewControllerDelegate {
             alpha: 1
         )
     }
-    
-    
 }
 
 extension UIColor {
