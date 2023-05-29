@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SettingsViewControllerDelegate {
-    func setViewColor(using color: Color)
+    func setViewColor(using color: UIColor)
 }
 
 
@@ -21,32 +21,23 @@ class ColorViewController: UIViewController {
         settingsVC.delegate = self
     }
     
-    private func getViewColor() -> Color {
-        view.backgroundColor?.rgba ?? Color(red: 0, green: 0, blue: 0)
+    private func getViewColor() -> UIColor {
+        let rgbValues = view.backgroundColor?.rgb ?? (red: 0, green: 0, blue: 0)
+        return UIColor(red: rgbValues.red, green: rgbValues.green, blue: rgbValues.blue, alpha: 1)
     }
 
 }
 
 //MARK: - Extensions
 extension ColorViewController: SettingsViewControllerDelegate {
-    func setViewColor(using color: Color) {
-        view.backgroundColor = UIColor(
-            red: CGFloat(color.red),
-            green: CGFloat(color.green),
-            blue: CGFloat(color.blue),
-            alpha: 1
-        )
+    func setViewColor(using color: UIColor) {
+        view.backgroundColor = color
     }
 }
 
 extension UIColor {
-    var rgba: Color {
-        var red: CGFloat = 0
-        var green: CGFloat = 0
-        var blue: CGFloat = 0
-        var alpha: CGFloat = 0
-        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-
-        return Color(red: Float(red), green: Float(green), blue: Float(blue))
+    var rgb: (red: CGFloat, green: CGFloat, blue: CGFloat) {
+        let ciColor = CIColor(color: self)
+        return (red: ciColor.red, green: ciColor.green, blue: ciColor.blue)
     }
 }

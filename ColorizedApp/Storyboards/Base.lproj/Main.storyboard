@@ -169,7 +169,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="EdC-UV-Xc7"/>
                                     <barButtonItem title="Done" id="HYQ-kW-042">
                                         <connections>
-                                            <action selector="keyboardDoneButtonItemPressed:" destination="BYZ-38-t0r" id="luB-kK-kii"/>
+                                            <action selector="keyboardDoneButtonItemPressed" destination="BYZ-38-t0r" id="j8o-I4-I79"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

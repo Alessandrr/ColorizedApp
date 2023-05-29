@@ -26,15 +26,16 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet var colorInputToolbar: UIToolbar!
     
-    var currentColor: Color!
+    var currentColor: UIColor!
     var delegate: SettingsViewControllerDelegate!
     
     //MARK: - Override functions
     override func viewDidLoad() {
         super.viewDidLoad()
         coloredView.layer.cornerRadius = 20
-        updateViewColor(for: coloredView)
+        setupViewColor(for: coloredView)
         updateSliderUI()
+        updateSliderLabels()
         setupFields()
         updateFieldValues()
     }
@@ -49,13 +50,10 @@ class SettingsViewController: UIViewController {
         switch sender {
         case redSlider:
             redValueLabel.text = string(from: sender)
-            currentColor.red = redSlider.value
         case greenSlider:
             greenValueLabel.text = string(from: sender)
-            currentColor.green = greenSlider.value
         default:
             blueValueLabel.text = string(from: sender)
-            currentColor.blue = blueSlider.value
         }
         
         updateViewColor(for: coloredView)
@@ -67,45 +65,8 @@ class SettingsViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @IBAction func keyboardDoneButtonItemPressed(_ sender: UIBarButtonItem) {
+    @IBAction func keyboardDoneButtonItemPressed() {
         view.endEditing(true)
-    }
-    
-    //MARK: - Private functions
-    private func updateViewColor(for view: UIView) {
-        view.backgroundColor = UIColor(
-            red: CGFloat(currentColor.red),
-            green: CGFloat(currentColor.green),
-            blue: CGFloat(currentColor.blue),
-            alpha: 1
-        )
-    }
-    
-    private func updateSliderUI() {
-        redSlider.setValue(currentColor.red, animated: true)
-        greenSlider.setValue(currentColor.green, animated: true)
-        blueSlider.setValue(currentColor.blue, animated: true)
-        
-        redValueLabel.text = string(from: redSlider)
-        greenValueLabel.text = string(from: greenSlider)
-        blueValueLabel.text = string(from: blueSlider)
-    }
-    
-    private func updateFieldValues() {
-        redValueTF.text = string(from: redSlider)
-        greenValueTF.text = string(from: greenSlider)
-        blueValueTF.text = string(from: blueSlider)
-    }
-    
-    private func setupFields() {
-        for field in [redValueTF, greenValueTF, blueValueTF] {
-            field?.inputAccessoryView = colorInputToolbar
-            field?.delegate = self
-        }
-    }
-    
-    private func string(from slider: UISlider) -> String {
-        String(format: "%.2f", slider.value)
     }
     
 }
@@ -133,18 +94,64 @@ extension SettingsViewController: UITextFieldDelegate {
         
         switch textField {
         case redValueTF:
-            currentColor.red = newColorValue
+            redSlider.setValue(newColorValue, animated: true)
         case greenValueTF:
-            currentColor.green = newColorValue
+            greenSlider.setValue(newColorValue, animated: true)
         default:
-            currentColor.blue = newColorValue
+            blueSlider.setValue(newColorValue, animated: true)
         }
-        
         updateViewColor(for: coloredView)
-        updateSliderUI()
+        updateSliderLabels()
+    }
+}
+
+//MARK: - Private functions
+
+extension SettingsViewController {
+    private func setupViewColor(for view: UIView) {
+        view.backgroundColor = currentColor
     }
     
-    func showAlert(withTitle title: String, message: String, textField: UITextField? = nil) {
+    private func updateViewColor(for view: UIView) {
+        currentColor = UIColor(
+            red: CGFloat(redSlider.value),
+            green: CGFloat(greenSlider.value),
+            blue: CGFloat(blueSlider.value),
+            alpha: 1
+        )
+        view.backgroundColor = currentColor
+    }
+    
+    private func updateSliderUI() {
+        redSlider.setValue(Float(currentColor.rgb.red), animated: true)
+        greenSlider.setValue(Float(currentColor.rgb.green), animated: true)
+        blueSlider.setValue(Float(currentColor.rgb.blue), animated: true)
+    }
+    
+    private func updateSliderLabels() {
+        redValueLabel.text = string(from: redSlider)
+        greenValueLabel.text = string(from: greenSlider)
+        blueValueLabel.text = string(from: blueSlider)
+    }
+    
+    private func updateFieldValues() {
+        redValueTF.text = string(from: redSlider)
+        greenValueTF.text = string(from: greenSlider)
+        blueValueTF.text = string(from: blueSlider)
+    }
+    
+    private func setupFields() {
+        for field in [redValueTF, greenValueTF, blueValueTF] {
+            field?.inputAccessoryView = colorInputToolbar
+            field?.delegate = self
+        }
+    }
+    
+    private func string(from slider: UISlider) -> String {
+        String(format: "%.2f", slider.value)
+    }
+    
+    private func showAlert(withTitle title: String, message: String, textField: UITextField? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
             textField?.text?.removeAll()
